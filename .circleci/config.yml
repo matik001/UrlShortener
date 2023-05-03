@@ -1,0 +1,21 @@
+version: 2.1
+
+
+jobs:
+  build-frontend:
+    steps:
+      
+  build-backend:
+    steps:
+  test-frontend:
+  test-backend:
+  deploy:
+
+workflows:
+  sample:
+    jobs:
+      - build-frontend
+      - build-backend
+      - test-frontend
+      - test-backend
+      - deploy
