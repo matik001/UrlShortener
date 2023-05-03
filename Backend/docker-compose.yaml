@@ -1,0 +1,39 @@
+version: '3.1'
+
+volumes:
+  psql_volume:
+  dependencies:
+  
+services:
+  psql:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "${DB_PASS}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_DB: "${DB_NAME}"
+    volumes:
+      - psql_volume:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}"
+      - "${DB_PORT}:${DB_PORT}"
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    restart: always
+    environment:
+      - PORT="${PORT}"
+      - DB_HOST="${DB_HOST}"
+      - DB_PORT="${DB_PORT}"
+      - DB_TYPE="${DB_TYPE}"
+      - DB_USER="${DB_USER}"
+      - DB_NAME="${DB_NAME}"
+      - DB_PASS="${DB_PASS}"
+    volumes:
+      - dependencies:/app/node_modules
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - psql
+
