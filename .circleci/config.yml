@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build-and-deploy:
+  deploy:
     docker:
       - image: cimg/node:18.16
     steps:
@@ -16,3 +16,7 @@ jobs:
 
       - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
       # - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd scripts && docker compose -f docker-compose.prod.yaml up -d'
+workflows:
+  build-and-deploy:
+    jobs:
+      - deploy
