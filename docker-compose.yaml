@@ -19,12 +19,12 @@ services:
       - "5010:5432"
   backend:
     build:
-      context: .
+      context: ./Backend
       dockerfile: Dockerfile.development
     restart: always
     volumes:
       - dependencies:/app/node_modules
-      - ./:/app
+      - ./Backend:/app
     ports:
       - "5000:5000"
       - "9229:9229"

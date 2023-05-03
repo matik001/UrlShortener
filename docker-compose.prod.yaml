@@ -19,7 +19,7 @@ services:
       - "${DB_PORT}:${DB_PORT}"
   backend:
     build:
-      context: .
+      context: ./Backend
       dockerfile: Dockerfile.production
     restart: always
     environment:
