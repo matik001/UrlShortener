@@ -1,5 +1,35 @@
 version: 2.1
 jobs:
+  build-backend:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run: cd Backend
+      - run: npm install
+      - run: npm run build
+
+  build-frontend:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run: echo "OK"
+
+  test-backend:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run: echo "OK"
+
+  test-frontend:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run: echo "OK"
+
   deploy:
     docker:
       - image: cimg/node:18.16
@@ -11,11 +41,8 @@ jobs:
       # copies files from repo to docker
       - checkout
 
-      # - run: npm install
-      # - run: npm run build
-
       - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
-      # - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd scripts && docker compose -f docker-compose.prod.yaml up -d'
+      - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd ~/projects/url_shortener && docker-compose -f docker-compose.yaml up -d'
 workflows:
   build-and-deploy:
     jobs:
