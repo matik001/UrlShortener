@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build-and-deploy:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - run: sudo apt update
+      - run: sudo apt-get install rsync
+      # adds ssh keys from circleci
+      - add_ssh_keys
+      # copies files from repo to docker
+      - checkout
+
+      # - run: npm install
+      # - run: npm run build
+
+      - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
+      # - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd scripts && docker compose -f docker-compose.prod.yaml up -d'
