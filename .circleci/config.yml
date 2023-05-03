@@ -13,7 +13,7 @@ jobs:
 
       # - run: npm install
       # - run: npm run build
-
+      - run: echo "$VPS_USER@$VPS_URL"
       - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
       # - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd scripts && docker compose -f docker-compose.prod.yaml up -d'
 workflows:
