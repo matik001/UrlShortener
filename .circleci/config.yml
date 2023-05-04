@@ -47,8 +47,8 @@ jobs:
           DB_PASS=$DB_PASS ; 
           DB_NAME=$DB_NAME ; 
           DB_PORT=$DB_PORT ;
-          echo \"user: $DB_USER  pass: $DB_PASS  db_name: $DB_NAME    db_port: $DB_PORT \" > test.txt
           cd ~/projects/url_shortener && 
+          printenv > test.txt &&
           docker-compose -f docker-compose.prod.yaml up -d"
 workflows:
   build-and-deploy:
