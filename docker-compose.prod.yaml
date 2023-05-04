@@ -9,9 +9,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: $DB_PASS
-      POSTGRES_USER: $DB_USER
-      POSTGRES_DB: $DB_NAME
+      POSTGRES_PASSWORD: "$DB_PASS"
+      POSTGRES_USER: "$DB_USER"
+      POSTGRES_DB: "$DB_NAME"
     volumes:
       - psql_volume:/var/lib/postgresql/data
     ports:
@@ -23,13 +23,13 @@ services:
       dockerfile: Dockerfile.production
     restart: always
     environment:
-      - PORT: $PORT
-      - DB_HOST: psql
-      - DB_PORT: $DB_PORT
-      - DB_TYPE: postgres
-      - DB_USER: $DB_USER
-      - DB_NAME: $DB_NAME
-      - DB_PASS: $DB_PASS
+      PORT: "$PORT"
+      DB_HOST: psql
+      DB_PORT: "$DB_PORT"
+      DB_TYPE: postgres
+      DB_USER: "$DB_USER"
+      DB_NAME: "$DB_NAME"
+      DB_PASS: "$DB_PASS"
     volumes:
       - dependencies:/app/node_modules
     ports:
