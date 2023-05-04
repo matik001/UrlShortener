@@ -40,9 +40,10 @@ jobs:
       - add_ssh_keys
       # copies files from repo to docker
       - checkout
-
+      - run: cmd="DB_USER=$DB_USER ; DB_PASS=$DB_PASS ; DB_NAME=$DB_NAME; DB_PORT=$DB_PORT"
+      - run: echo "$cmd"
       - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
-      - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL 'cd ~/projects/url_shortener && docker-compose -f docker-compose.yaml up -d'
+      - run: ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL "$cmd ; cd ~/projects/url_shortener && docker-compose -f docker-compose.prod.yaml up -d"
 workflows:
   build-and-deploy:
     jobs:
