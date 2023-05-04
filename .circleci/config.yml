@@ -45,8 +45,6 @@ jobs:
              echo $cmd;
              rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener &&
              ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL "$cmd ; cd ~/projects/url_shortener && docker-compose -f docker-compose.prod.yaml up -d"
-      - run: 
-      - run:
 workflows:
   build-and-deploy:
     jobs:
