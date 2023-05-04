@@ -51,7 +51,7 @@ jobs:
             export DB_PORT=$DB_PORT ;
             cd ~/projects/url_shortener ;
             docker compose -f docker-compose.prod.yaml up -d"
-workflows:
+workflows:  
   build-and-deploy:
     jobs:
       - deploy
