@@ -47,6 +47,7 @@ jobs:
           DB_PASS=$DB_PASS ; 
           DB_NAME=$DB_NAME ; 
           DB_PORT=$DB_PORT ;
+          testvar=alamakota ;
           cd ~/projects/url_shortener && 
           printenv > test.txt &&
           docker-compose -f docker-compose.prod.yaml up -d"
