@@ -38,17 +38,19 @@ jobs:
       - run: sudo apt-get install rsync
       # adds ssh keys from circleci
       - add_ssh_keys
-      # copies files from repo to docker
+      # copies files from repo to pipeline
       - checkout
+      # copies files from pipeline to vps via ssh
+      - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
       - run: > 
-          rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener &&
           ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL "
             export DB_USER=$DB_USER ; 
             export DB_PASS=$DB_PASS ; 
             export DB_NAME=$DB_NAME ; 
             export DB_PORT=$DB_PORT ;
-            cd ~/projects/url_shortener &&
-            docker-compose -f docker-compose.prod.yaml up -d"
+            cd ~/projects/url_shortener ;
+            pwd > test.txt;
+            docker compose -f docker-compose.prod.yaml up -d"
 workflows:
   build-and-deploy:
     jobs:
