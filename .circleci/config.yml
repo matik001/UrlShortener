@@ -49,6 +49,8 @@ jobs:
             export DB_PASS=$DB_PASS ; 
             export DB_NAME=$DB_NAME ; 
             export DB_PORT=$DB_PORT ;
+            export DB_TYPE=$DB_TYPE ;
+            export DB_HOST=$DB_HOST ;
             cd ~/projects/url_shortener ;
             docker compose -f docker-compose.prod.yaml up -d"
 workflows:  
