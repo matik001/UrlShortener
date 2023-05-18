@@ -6,12 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint src --fix",
+    "preview": "vite preview",
+    "prepare": "cd .. && husky install Frontend/.husky",
+    "checkup": "echo sprawdzono"
   },
   "dependencies": {
+    "@swc/plugin-styled-components": "^1.5.67",
+    "@tanstack/react-query-devtools": "^4.29.7",
+    "immer": "^10.0.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-toastify": "^9.1.2",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@tanstack/react-query": "^4.29.5",
@@ -22,14 +29,19 @@
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-legacy": "^4.0.3",
     "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.1",
     "@vitest/ui": "^0.31.0",
     "antd": "^5.4.6",
     "axios": "^1.4.0",
     "devextreme": "22.2",
     "devextreme-react": "22.2",
     "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "eslint-plugin-vitest": "^0.2.2",
     "framer-motion": "^10.12.7",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
@@ -43,6 +55,6 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.31.0"
+    "vitest": "^0.31.1"
   }
 }
