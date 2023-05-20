@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const shortenerAxios = axios.create({});
+export const appAxios = axios.create({
+	baseURL: '/api'
+});
 
-shortenerAxios.interceptors.request.use(
+appAxios.interceptors.request.use(
 	function (config) {
 		return config;
 	},
@@ -16,7 +18,7 @@ shortenerAxios.interceptors.request.use(
 	}
 );
 
-shortenerAxios.interceptors.response.use(
+appAxios.interceptors.response.use(
 	function (response) {
 		return response;
 	},

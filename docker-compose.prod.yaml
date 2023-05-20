@@ -18,7 +18,19 @@ services:
       DB_NAME: "$DB_NAME"
       DB_PASS: "$DB_PASS"
     volumes:
-      - dependencies:/app/node_modules
+      - node_backend:/app/node_modules
     ports:
       - "${PORT}:${PORT}"
+  
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile.production
+    restart: always
+    environment:
+      PORT: "80"
+    volumes:
+      - node_frontend:/app/node_modules
+    ports:
+      - "80:80"
 

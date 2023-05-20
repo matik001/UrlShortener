@@ -7,18 +7,18 @@ import { TypeormConfigService } from './config/TypeormConfig.service';
 import { EnvConfigModule } from './config/EnvConfig.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [loadConfig],
-    }),
-    TypeOrmModule.forRootAsync({
-      imports: [EnvConfigModule],
-      useClass: TypeormConfigService,
-    }),
-    UrlModule,
-  ],
-  controllers: [],
-  providers: [],
+	imports: [
+		ConfigModule.forRoot({
+			isGlobal: true,
+			load: [loadConfig]
+		}),
+		TypeOrmModule.forRootAsync({
+			imports: [EnvConfigModule],
+			useClass: TypeormConfigService
+		}),
+		UrlModule
+	],
+	controllers: [],
+	providers: []
 })
 export class AppModule {}

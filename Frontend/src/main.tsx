@@ -6,6 +6,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AppThemeProvider from 'setup/AppThemeProvider';
+import './index.css';
 import Router from './setup/router/router';
 
 const init = async () => {
@@ -13,13 +15,9 @@ const init = async () => {
 		defaultOptions: {
 			queries: {
 				refetchOnReconnect: false,
-
 				refetchOnWindowFocus: false,
-
 				refetchInterval: false,
-
 				refetchOnMount: false,
-
 				retry: 3
 			}
 		}
@@ -28,13 +26,14 @@ const init = async () => {
 	ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<ErrorBoundary>
-					<Router />
-				</ErrorBoundary>
+				<AppThemeProvider>
+					<ErrorBoundary>
+						<Router />
+					</ErrorBoundary>
 
-				<ReactQueryDevtools initialIsOpen={false} />
-
-				<ToastContainer position="bottom-right" />
+					<ReactQueryDevtools initialIsOpen={false} />
+					<ToastContainer position="bottom-right" />
+				</AppThemeProvider>
 			</QueryClientProvider>
 		</React.StrictMode>
 	);
