@@ -2,7 +2,8 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 ENV NODE_ENV production
 RUN npm install -g pnpm
-COPY package*.json ./
+COPY package.json ./
+COPY pnpm-lock.yaml ./
 RUN pnpm i -P --ignore-scripts
 COPY . .
 RUN pnpm build

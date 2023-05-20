@@ -10,9 +10,8 @@ export class UrlController {
 	@Post('shorten')
 	async shorten(@Req() req: Request, @Body() body: ShortenUrlDto) {
 		const key = await this.urlService.shorten(body.path);
-		const newUrl = `${req.protocol}://${req.get('Host')}/url/short/${key}`;
 		return {
-			newUrl: newUrl
+			key: key
 		};
 	}
 

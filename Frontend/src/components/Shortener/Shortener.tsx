@@ -54,7 +54,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 	}, []);
 
 	const {
-		data: newUrl,
+		data: key,
 		isFetching,
 		refetch
 	} = useQuery({
@@ -76,6 +76,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 		},
 		[shortenHandler]
 	);
+	const newUrl = key ? `${window.location.href}api/url/short/${key.key}` : null;
 
 	return (
 		<Spin spinning={isFetching}>
@@ -94,17 +95,14 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 
 				{newUrl && (
 					<>
-						<CopyToClipboard
-							text={newUrl.newUrl}
-							onCopy={() => toast('Copied!', { type: 'success' })}
-						>
+						<CopyToClipboard text={newUrl} onCopy={() => toast('Copied!', { type: 'success' })}>
 							<div
 								style={{ textAlign: 'center', color: 'white', fontSize: '24px', marginTop: '30px' }}
 							>
 								New URL:
 								<Link>
 									<FiCopy />
-									{newUrl.newUrl}
+									{newUrl}
 								</Link>
 							</div>
 						</CopyToClipboard>

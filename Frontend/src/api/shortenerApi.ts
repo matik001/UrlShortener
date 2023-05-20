@@ -1,7 +1,7 @@
 import { appAxios } from './apiConfig';
 
 export interface ShortenResponse {
-	newUrl: string;
+	key: string;
 }
 export const shorten = async (url: string) => {
 	const res = await appAxios.post<ShortenResponse>('/url/shorten', {
