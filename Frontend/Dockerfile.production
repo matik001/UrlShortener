@@ -1,10 +1,11 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
 ENV NODE_ENV production
-RUN npm run build
+RUN npm install -g pnpm
+COPY package*.json ./
+RUN pnpm i -P --ignore-scripts
+COPY . .
+RUN pnpm build
 
 FROM nginx:1.21.0-alpine as production
 ENV NODE_ENV production
