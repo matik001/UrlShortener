@@ -21,17 +21,15 @@ services:
     volumes:
       - node_backend:/app/node_modules
     ports:
-      - "5000:5000"
+      - "5000"
   
   frontend_with_proxy:
     build:
       context: ./Frontend
       dockerfile: Dockerfile.production
     restart: always
-    environment:
-      PORT: "80"
     volumes:
       - node_frontend:/app/node_modules
     ports:
-      - "80:80"
+      - "${PORT}:80"
 
