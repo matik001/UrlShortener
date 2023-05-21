@@ -44,6 +44,7 @@ jobs:
       - run: rsync -e "ssh -o StrictHostKeyChecking=no" -arvc --delete . $VPS_USER@$VPS_URL:~/projects/url_shortener
       - run: > 
           ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_URL "
+            export PORT=$PORT ; 
             export DB_USER=$DB_USER ; 
             export DB_PASS=$DB_PASS ; 
             export DB_NAME=$DB_NAME ; 
