@@ -15,7 +15,7 @@ export class UrlController {
 		};
 	}
 
-	@Get('/short/:key')
+	@Get('/:key')
 	async short(@Param('key') key: string, @Res() res: Response) {
 		const redirectionUrl = await this.urlService.getRedirectionUrl(key);
 		return res.redirect(redirectionUrl);

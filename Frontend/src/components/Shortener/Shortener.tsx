@@ -76,7 +76,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 		},
 		[shortenHandler]
 	);
-	const newUrl = key ? `${window.location.href}api/url/short/${key.key}` : null;
+	const newUrl = key ? `${window.location.href}url/${key.key}` : null;
 
 	return (
 		<Spin spinning={isFetching}>
