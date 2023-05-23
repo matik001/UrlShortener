@@ -30,7 +30,6 @@ services:
     restart: always
     volumes:
       - node_frontend:/app/node_modules
-      - ./logs:/var/log/nginx/
     ports:
       - "${PORT}:80"
 
