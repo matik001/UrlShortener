@@ -10,6 +10,6 @@ The project has been meticulously configured with the following features:
 - Reverse proxy with Nginx so that CORS doesn't need to be enabled.
 - Vite-based reverse proxy for debugging purposes.
 - A profile for VSCode that enables debugging of code within the container.
-- Planned implementation of a switch between dark mode and light mode.
+- Switch between dark mode and light mode.
 
 You can try out this app by visiting: [https://url.zaora.me](https://url.zaora.me)

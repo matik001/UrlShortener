@@ -2,7 +2,7 @@ import { Switch } from 'antd';
 import Shortener from 'components/Shortener/Shortener';
 import styled from 'styled-components';
 import { useDarkMode } from 'usehooks-ts';
-
+import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
 const Title = styled.h1`
 	text-align: center;
 	font-weight: 400;
@@ -11,17 +11,32 @@ const Title = styled.h1`
 	pointer-events: none;
 	user-select: none;
 `;
-
+const ThemeSwitch = styled(Switch)`
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	& .ant-switch-handle::before {
+		background-color: black;
+	}
+	/* width: 50px; */
+`;
+const DarkModeIcon = styled(MdOutlineDarkMode)`
+	font-size: 18px;
+`;
+const LightModeIcon = styled(MdOutlineWbSunny)`
+	font-size: 18px;
+`;
 const TestPage = () => {
 	const { isDarkMode, toggle } = useDarkMode(true);
 	return (
 		<div>
-			<Switch
+			<ThemeSwitch
 				onClick={toggle}
-				checkedChildren={<>Dark mode</>}
-				unCheckedChildren={<>Light mode</>}
+				checkedChildren={<LightModeIcon />}
+				unCheckedChildren={<DarkModeIcon />}
 				defaultChecked
 			/>
+
 			<Title>Super Url Shortener</Title>
 			<Shortener />
 		</div>
