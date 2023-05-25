@@ -42,10 +42,12 @@ export default defineConfig({
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, '')
 			},
-			'/': {
+			'^/[\\d]+$': {
 				target: 'http://127.0.0.1:5000',
 				changeOrigin: true,
-				rewrite: (path) => path.replace(/^\//, '/url/short/')
+				rewrite: (path) => {
+					return path.replace('/', '/url/short/');
+				}
 			}
 		}
 	}

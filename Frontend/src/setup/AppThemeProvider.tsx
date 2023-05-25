@@ -1,6 +1,7 @@
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import React, { ReactNode, useState } from 'react';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { useDarkMode } from 'usehooks-ts';
 
 interface AppThemeProviderProps {
 	children: ReactNode;
@@ -25,23 +26,37 @@ declare module 'styled-components' {
 	export interface DefaultTheme extends AppTheme {}
 }
 const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
-	const theme: AppTheme = {
+	const themeDark: AppTheme = {
 		primaryColor: 'orange',
 		bgColor: '#111111'
 	};
-	const [isDarkMode, setIsDarkMode] = useState(true);
+	const themeLight: AppTheme = {
+		primaryColor: '#6b43c9',
+		bgColor: '#acbede'
+	};
+	const { isDarkMode } = useDarkMode();
+	const theme = isDarkMode ? themeDark : themeLight;
 	const { defaultAlgorithm, darkAlgorithm } = antdTheme;
 
 	return (
 		<ThemeProvider theme={theme}>
 			<ConfigProvider
-				theme={{
-					token: {
-						colorPrimary: theme.primaryColor,
-						colorBgBase: theme.bgColor
-					},
-					algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm
-				}}
+				theme={
+					isDarkMode
+						? {
+								token: {
+									colorPrimary: theme.primaryColor,
+									colorBgBase: theme.bgColor
+								},
+								algorithm: darkAlgorithm
+						  }
+						: {
+								token: {
+									colorPrimary: theme.primaryColor
+								},
+								algorithm: defaultAlgorithm
+						  }
+				}
 			>
 				<>
 					<GlobalStyle />

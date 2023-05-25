@@ -77,7 +77,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 		[shortenHandler]
 	);
 	const newUrl = key
-		? `${window.location.href.replace('https://', '').replace('https://', '')}${key.key}`
+		? `${window.location.href.replace('https://', '').replace('http://', '')}${key.key}`
 		: null;
 
 	return (

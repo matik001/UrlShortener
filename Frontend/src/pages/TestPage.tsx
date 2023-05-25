@@ -1,5 +1,7 @@
+import { Switch } from 'antd';
 import Shortener from 'components/Shortener/Shortener';
 import styled from 'styled-components';
+import { useDarkMode } from 'usehooks-ts';
 
 const Title = styled.h1`
 	text-align: center;
@@ -11,11 +13,18 @@ const Title = styled.h1`
 `;
 
 const TestPage = () => {
+	const { isDarkMode, toggle } = useDarkMode(true);
 	return (
-		<>
+		<div>
+			<Switch
+				onClick={toggle}
+				checkedChildren={<>Dark mode</>}
+				unCheckedChildren={<>Light mode</>}
+				defaultChecked
+			/>
 			<Title>Super Url Shortener</Title>
 			<Shortener />
-		</>
+		</div>
 	);
 };
 
