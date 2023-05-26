@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DataSourceOptions } from 'typeorm';
+import { InitialDB1685139137099 } from '../../migrations/1685139137099-InitialDB';
 import { Url } from '../url/url.entity';
 
 declare global {
@@ -33,7 +34,8 @@ export const loadConfig = () => ({
 		username: process.env.DB_USER,
 		password: process.env.DB_PASS,
 		type: process.env.DB_TYPE,
-		entities: [Url]
+		entities: [Url],
+		migrations: [InitialDB1685139137099]
 	} as DataSourceOptions
 });
 
