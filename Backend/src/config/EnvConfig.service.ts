@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { DataSourceOptions } from 'typeorm';
+import { Url } from '../url/url.entity';
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
@@ -17,17 +19,9 @@ declare global {
 	}
 }
 
-export interface EnvDBConfig {
-	host: string;
-	port: number;
-	type: 'mysql' | 'mariadb' | 'postgres' | 'cockroachdb' | 'sqlite' | 'mssql';
-	user: string;
-	pass: string;
-	name: string;
-}
 export interface EnvConfig {
 	port: number;
-	db: EnvDBConfig;
+	db: DataSourceOptions;
 }
 
 export const loadConfig = () => ({
@@ -35,11 +29,12 @@ export const loadConfig = () => ({
 	db: {
 		host: process.env.DB_HOST,
 		port: parseInt(process.env.DB_PORT),
-		name: process.env.DB_NAME,
-		pass: process.env.DB_PASS,
+		database: process.env.DB_NAME,
+		username: process.env.DB_USER,
+		password: process.env.DB_PASS,
 		type: process.env.DB_TYPE,
-		user: process.env.DB_USER
-	} as EnvDBConfig
+		entities: [Url]
+	} as DataSourceOptions
 });
 
 @Injectable()
@@ -50,6 +45,6 @@ export class EnvConfigService implements EnvConfig {
 		return this.configService.getOrThrow<number>('port');
 	}
 	public get db() {
-		return this.configService.getOrThrow<EnvDBConfig>('db');
+		return this.configService.getOrThrow<DataSourceOptions>('db');
 	}
 }
