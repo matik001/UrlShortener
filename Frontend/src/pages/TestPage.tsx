@@ -1,8 +1,9 @@
-import { Switch } from 'antd';
+import { Button, Switch } from 'antd';
 import Shortener from 'components/Shortener/Shortener';
+import { useTranslation } from 'react-i18next';
+import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
 import styled from 'styled-components';
 import { useDarkMode } from 'usehooks-ts';
-import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
 const Title = styled.h1`
 	text-align: center;
 	font-weight: 400;
@@ -28,6 +29,8 @@ const LightModeIcon = styled(MdOutlineWbSunny)`
 `;
 const TestPage = () => {
 	const { isDarkMode, toggle } = useDarkMode(true);
+	const { t, i18n } = useTranslation();
+
 	return (
 		<div>
 			<ThemeSwitch
@@ -36,6 +39,16 @@ const TestPage = () => {
 				unCheckedChildren={<LightModeIcon />}
 				defaultChecked
 			/>
+			<Button
+				style={{
+					position: 'absolute',
+					bottom: '20px',
+					right: '20px'
+				}}
+				onClick={() => i18n.changeLanguage(i18n.language === 'pl' ? 'en' : 'pl')}
+			>
+				{i18n.language === 'pl' ? 'PL' : 'ENG'}
+			</Button>
 
 			<Title>Super Url Shortener</Title>
 			<Shortener />

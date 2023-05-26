@@ -3,7 +3,8 @@ version: '3.1'
 volumes:
   psql_volume:
   dependencies:
-  
+
+
 services:
   psql:
     image: postgres
@@ -16,7 +17,7 @@ services:
       - psql_volume:/var/lib/postgresql/data
     ports:
       - "5432"
-      - "5010:5432"
+      - "5432:5432"
   backend:
     build:
       context: ./Backend

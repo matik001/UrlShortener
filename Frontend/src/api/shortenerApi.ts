@@ -1,5 +1,4 @@
 import { appAxios } from './apiConfig';
-
 export interface ShortenResponse {
 	key: string;
 }

@@ -3,6 +3,7 @@ import { Button, Input, Spin } from 'antd';
 import { shorten } from 'api/shortenerApi';
 import React, { useCallback, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { useTranslation } from 'react-i18next';
 import { FiCopy } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
@@ -48,6 +49,8 @@ const Link = styled.div`
 `;
 
 const Shortener: React.FC<ShortenerProps> = ({}) => {
+	const { t } = useTranslation();
+
 	const [url, setUrl] = useState('');
 	const changeUrl = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
 		setUrl(e.target.value);
@@ -85,12 +88,12 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 			<Container>
 				<Row>
 					<UrlInput
-						placeholder="Enter your url"
+						placeholder={t('EnterYourUrl')}
 						onChange={changeUrl}
 						onKeyDown={enterDownHandler}
 					/>
 					<SubmitUrlBtn type="primary" value={url} onClick={shortenHandler}>
-						Shorten
+						{t('Shorten')}
 					</SubmitUrlBtn>
 				</Row>
 				<br />
@@ -101,7 +104,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 							<div
 								style={{ textAlign: 'center', color: 'white', fontSize: '24px', marginTop: '30px' }}
 							>
-								New URL:
+								{t('YourUrl')}:
 								<Link>
 									<FiCopy />
 									{newUrl}

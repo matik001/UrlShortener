@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AppThemeProvider from 'setup/AppThemeProvider';
 import './index.css';
 import Router from './setup/router/router';
+import AppTranslationsProvider from 'setup/AppTranslationsProvider';
 
 const init = async () => {
 	const queryClient = new QueryClient({
@@ -22,19 +23,20 @@ const init = async () => {
 			}
 		}
 	});
-
 	ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 		<React.StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<AppThemeProvider>
-					<ErrorBoundary>
-						<Router />
-					</ErrorBoundary>
+			<AppTranslationsProvider>
+				<QueryClientProvider client={queryClient}>
+					<AppThemeProvider>
+						<ErrorBoundary>
+							<Router />
+						</ErrorBoundary>
 
-					<ReactQueryDevtools initialIsOpen={false} />
-					<ToastContainer position="bottom-right" />
-				</AppThemeProvider>
-			</QueryClientProvider>
+						<ReactQueryDevtools initialIsOpen={false} />
+						<ToastContainer position="bottom-right" />
+					</AppThemeProvider>
+				</QueryClientProvider>
+			</AppTranslationsProvider>
 		</React.StrictMode>
 	);
 };
