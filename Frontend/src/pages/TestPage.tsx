@@ -32,8 +32,8 @@ const TestPage = () => {
 		<div>
 			<ThemeSwitch
 				onClick={toggle}
-				checkedChildren={<LightModeIcon />}
-				unCheckedChildren={<DarkModeIcon />}
+				checkedChildren={<DarkModeIcon />}
+				unCheckedChildren={<LightModeIcon />}
 				defaultChecked
 			/>
 
