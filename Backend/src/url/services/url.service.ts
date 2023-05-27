@@ -38,7 +38,7 @@ export class UrlService {
 			date: new Date(),
 			headers: req.rawHeaders.join('\n'),
 			url: url,
-			ip: req.ip
+			ip: req.get('X-Forwarded-For') ?? req.ip
 		});
 		return url.url;
 	}
