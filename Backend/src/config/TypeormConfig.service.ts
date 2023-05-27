@@ -7,7 +7,8 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
 	constructor(private envConfigService: EnvConfigService) {}
 	createTypeOrmOptions(): TypeOrmModuleOptions {
 		return {
-			...this.envConfigService.db
+			...this.envConfigService.db,
+			autoLoadEntities: true
 		};
 	}
 }

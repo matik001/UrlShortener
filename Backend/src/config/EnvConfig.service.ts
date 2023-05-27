@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { join } from 'path';
 import { DataSourceOptions } from 'typeorm';
-import { InitialDB1685139137099 } from '../../migrations/1685139137099-InitialDB';
-import { Url } from '../url/url.entity';
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
@@ -25,19 +24,24 @@ export interface EnvConfig {
 	db: DataSourceOptions;
 }
 
-export const loadConfig = () => ({
-	port: parseInt(process.env.PORT ?? '0', 10) || 3000,
-	db: {
-		host: process.env.DB_HOST,
-		port: parseInt(process.env.DB_PORT),
-		database: process.env.DB_NAME,
-		username: process.env.DB_USER,
-		password: process.env.DB_PASS,
-		type: process.env.DB_TYPE,
-		entities: [Url],
-		migrations: [InitialDB1685139137099]
-	} as DataSourceOptions
-});
+export const loadConfig = (): EnvConfig => {
+	const p = join(__dirname, '../**/**.entity.{.ts,.js}');
+	console.log(p);
+
+	return {
+		port: parseInt(process.env.PORT ?? '0', 10) || 3000,
+		db: {
+			host: process.env.DB_HOST,
+			port: parseInt(process.env.DB_PORT),
+			database: process.env.DB_NAME,
+			username: process.env.DB_USER,
+			password: process.env.DB_PASS,
+			type: process.env.DB_TYPE as 'postgres' | 'mysql',
+			migrations: [join(__dirname, '../../migrations/**.ts')],
+			entities: [join(__dirname, '../**/**.entity.{.ts,.js}')]
+		}
+	};
+};
 
 @Injectable()
 export class EnvConfigService implements EnvConfig {

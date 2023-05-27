@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
-import { UrlService } from './url.service';
-import { ShortenUrlDto } from './dto/shortenUrl.dto';
 import { Request, Response } from 'express';
+import { ShortenUrlDto } from '../dto/shortenUrl.dto';
+import { UrlService } from '../services/url.service';
 
 @Controller('url')
 export class UrlController {
@@ -17,7 +17,13 @@ export class UrlController {
 
 	@Get('short/:key')
 	async short(@Param('key') key: string, @Req() req: Request, @Res() res: Response) {
-		const redirectionUrl = await this.urlService.getRedirectionUrl(key);
+		const redirectionUrl = await this.urlService.getRedirectionUrl(key, req);
 		return res.redirect(redirectionUrl);
+	}
+
+	@Get('logs/:key')
+	async keyLogs(@Param('key') key: string) {
+		const url = await this.urlService.getUrlWithLogs(key);
+		return url;
 	}
 }

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UrlModule } from './url/url.module';
 import { ConfigModule } from '@nestjs/config';
-import { loadConfig } from './config/EnvConfig.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeormConfigService } from './config/TypeormConfig.service';
 import { EnvConfigModule } from './config/EnvConfig.module';
+import { loadConfig } from './config/EnvConfig.service';
+import { TypeormConfigService } from './config/TypeormConfig.service';
+import { UrlModule } from './url/url.module';
 
 @Module({
 	imports: [
