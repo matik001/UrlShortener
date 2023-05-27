@@ -34,11 +34,14 @@ export class UrlService {
 			...url,
 			clicked: url.clicked + 1
 		});
+		let ip = req.get('X-Forwarded-For');
+		if (ip) ip = ip.split(',')[0];
+		else ip = req.ip;
 		await this.urlLogRepo.insert({
 			date: new Date(),
 			headers: req.rawHeaders.join('\n'),
 			url: url,
-			ip: req.get('X-Forwarded-For') ?? req.ip
+			ip: ip
 		});
 		return url.url;
 	}
