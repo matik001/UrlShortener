@@ -37,10 +37,10 @@ const MainTemplatePage = ({ children }: MainTemplatePageProps) => {
 	return (
 		<div>
 			<ThemeSwitch
+				checked={isDarkMode}
 				onClick={toggle}
 				checkedChildren={<DarkModeIcon />}
 				unCheckedChildren={<LightModeIcon />}
-				defaultChecked
 			/>
 			<Button
 				style={{
