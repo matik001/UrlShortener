@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import { darken, lighten } from 'polished';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MdInfoOutline } from 'react-icons/md';
+import {
+	MdInfoOutline,
+	MdOutlineKeyboardArrowDown,
+	MdOutlineKeyboardArrowUp
+} from 'react-icons/md';
 import styled from 'styled-components';
 import { UrlLog } from 'types/url';
 import { useBoolean } from 'usehooks-ts';
@@ -22,8 +26,8 @@ const Container = styled.div<{ expanded: boolean }>`
 	margin-bottom: 10px;
 	padding: 10px;
 	border-radius: 0px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
 	&:hover {
 		background-color: ${(props) =>
 			props.theme.isDarkMode
@@ -88,8 +92,11 @@ const Log: React.FC<LogProps> = ({ log }) => {
 	return (
 		<Container onClick={expandHandler} expanded={expanded}>
 			<Row>
-				<p> {`${log.date.toLocaleDateString()} ${log.date.toLocaleTimeString()}`}</p>
-				<p>IP: {log.ip}</p>
+				<div style={{ fontSize: '36px', display: 'flex' }}>
+					{expanded ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowUp />}
+				</div>
+				<span>{`${log.date.toLocaleDateString()} ${log.date.toLocaleTimeString()}`}</span>
+				<span>IP: {log.ip}</span>
 				<Button
 					type="default"
 					onClick={moreInfoHandler}
