@@ -5,6 +5,7 @@ import React, { useCallback, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useTranslation } from 'react-i18next';
 import { FiCopy } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { keyToRedirectionUrl } from 'utils/generalUtils';
@@ -34,7 +35,7 @@ const Row = styled.div`
 	display: flex;
 	flex-direction: row;
 `;
-const Link = styled.div`
+const RedirectLink = styled.div`
 	color: ${(props) => props.theme.primaryColor};
 	font-size: 22px;
 	cursor: pointer;
@@ -100,16 +101,17 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 				{newUrl && (
 					<>
 						<CopyToClipboard text={newUrl} onCopy={() => toast('Copied!', { type: 'success' })}>
-							<div
-								style={{ textAlign: 'center', color: 'white', fontSize: '24px', marginTop: '30px' }}
-							>
-								{t('YourUrl')}:
-								<Link>
+							<div style={{ textAlign: 'center', fontSize: '24px', marginTop: '30px' }}>
+								{t('YourUrl')}
+								<RedirectLink>
 									<FiCopy />
 									{newUrl}
-								</Link>
+								</RedirectLink>
 							</div>
 						</CopyToClipboard>
+						<Link style={{ float: 'right' }} to={`/logs/${key?.key}`}>
+							{t('GoToLogs')}
+						</Link>
 					</>
 				)}
 			</Container>

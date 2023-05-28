@@ -41,8 +41,8 @@ const AppThemeProvider: React.FC<AppThemeProviderProps> = ({ children }) => {
 		isDarkMode: true
 	};
 	const themeLight: AppTheme = {
-		primaryColor: '#6b43c9',
-		bgColor: '#acbede',
+		primaryColor: '#f19808',
+		bgColor: '#fcf7f2',
 		textColor: 'black',
 		isDarkMode: false
 	};

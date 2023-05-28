@@ -1,7 +1,7 @@
 import { Button, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { motion } from 'framer-motion';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdInfoOutline } from 'react-icons/md';
@@ -13,7 +13,10 @@ type LogProps = {
 };
 
 const Container = styled.div<{ expanded: boolean }>`
-	background-color: ${(props) => darken(props.expanded ? 0.1 : 0.2, props.theme.primaryColor)};
+	background-color: ${(props) =>
+		props.theme.isDarkMode
+			? darken(props.expanded ? 0.1 : 0.2, props.theme.primaryColor)
+			: lighten(props.expanded ? 0.1 : 0.2, props.theme.primaryColor)};
 	cursor: pointer;
 	border: 2px solid ${(props) => props.theme.primaryColor};
 	margin-bottom: 10px;
@@ -22,7 +25,10 @@ const Container = styled.div<{ expanded: boolean }>`
 	padding-left: 40px;
 	padding-right: 40px;
 	&:hover {
-		background-color: ${(props) => darken(0.1, props.theme.primaryColor)};
+		background-color: ${(props) =>
+			props.theme.isDarkMode
+				? darken(0.1, props.theme.primaryColor)
+				: lighten(0.1, props.theme.primaryColor)};
 	}
 `;
 const Row = styled.div`

@@ -14,7 +14,8 @@ const resources = {
 			EnterYourUrl: 'Enter your url',
 			Shorten: 'Shorten',
 			YourUrl: 'Your url',
-			MoreInfo: 'More info'
+			MoreInfo: 'More info',
+			GoToLogs: 'Go to logs'
 		}
 	},
 	pl: {
@@ -22,7 +23,8 @@ const resources = {
 			EnterYourUrl: 'Podaj swój url',
 			Shorten: 'Skróć',
 			YourUrl: 'Twój url',
-			MoreInfo: 'Więcej informacji'
+			MoreInfo: 'Więcej informacji',
+			GoToLogs: 'Przejdź to logów'
 		}
 	}
 };
