@@ -44,7 +44,7 @@ const MainTemplatePage = ({ children }: MainTemplatePageProps) => {
 			/>
 			<Button
 				style={{
-					position: 'absolute',
+					position: 'fixed',
 					bottom: '20px',
 					right: '20px'
 				}}

@@ -49,6 +49,9 @@ dependencies:
   immer:
     specifier: ^10.0.2
     version: 10.0.2
+  polished:
+    specifier: ^4.2.2
+    version: 4.2.2
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -6273,6 +6276,13 @@ packages:
       mlly: 1.2.1
       pathe: 1.1.0
     dev: true
+
+  /polished@4.2.2:
+    resolution: {integrity: sha512-Sz2Lkdxz6F2Pgnpi9U5Ng/WdWAUZxmHrNPoVlm3aAemxoy2Qy7LGjQg4uf8qKelDAUW94F4np3iH2YPf2qefcQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.21.5
+    dev: false
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}

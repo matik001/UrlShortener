@@ -13,14 +13,16 @@ const resources = {
 		translation: {
 			EnterYourUrl: 'Enter your url',
 			Shorten: 'Shorten',
-			YourUrl: 'Your url'
+			YourUrl: 'Your url',
+			MoreInfo: 'More info'
 		}
 	},
 	pl: {
 		translation: {
 			EnterYourUrl: 'Podaj swój url',
 			Shorten: 'Skróć',
-			YourUrl: 'Twój url'
+			YourUrl: 'Twój url',
+			MoreInfo: 'Więcej informacji'
 		}
 	}
 };

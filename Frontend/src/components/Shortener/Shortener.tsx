@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { FiCopy } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import { keyToRedirectionUrl } from 'utils/generalUtils';
 
 interface ShortenerProps {}
 
@@ -79,9 +80,7 @@ const Shortener: React.FC<ShortenerProps> = ({}) => {
 		},
 		[shortenHandler]
 	);
-	const newUrl = key
-		? `${window.location.href.replace('https://', '').replace('http://', '')}${key.key}`
-		: null;
+	const newUrl = keyToRedirectionUrl(key?.key);
 
 	return (
 		<Spin spinning={isFetching}>
