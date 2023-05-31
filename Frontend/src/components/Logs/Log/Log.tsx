@@ -60,24 +60,23 @@ const Log: React.FC<LogProps> = ({ log }) => {
 	const columns = useMemo(
 		(): ColumnsType<HeaderItem> => [
 			{
-				title: 'Header name',
+				title: t('HeaderName'),
 				dataIndex: 'name',
 				key: 'name'
 			},
 			{
-				title: 'Value',
+				title: t('Value'),
 				dataIndex: 'value',
 				key: 'value'
 			}
 		],
-		[]
+		[t]
 	);
 	const moreInfoHandler = () => {
 		window.open(`https://www.infobyip.com/ip-${log.ip}.html`, '_blank');
 	};
 	const expandHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
 		e.preventDefault();
-		console.log(e);
 		const elem = e.target as HTMLDivElement;
 		const parent = elem.parentNode as HTMLDivElement;
 		const classes = [...elem.classList];
@@ -89,6 +88,7 @@ const Log: React.FC<LogProps> = ({ log }) => {
 			return;
 		return toggleExpanded();
 	};
+
 	return (
 		<Container onClick={expandHandler} expanded={expanded}>
 			<Row>
@@ -103,10 +103,13 @@ const Log: React.FC<LogProps> = ({ log }) => {
 					style={{ display: 'flex', alignItems: 'center' }}
 				>
 					<MdInfoOutline />
-					<span style={{ marginLeft: '3px' }}>{t('MoreInfo')}</span>
+					<span style={{ marginLeft: '3px' }}>{t('IpInfo')}</span>
 				</Button>
 			</Row>
-			<motion.div style={{ overflow: 'hidden' }} animate={{ height: expanded ? 'auto' : 0 }}>
+			<motion.div
+				style={{ overflow: 'hidden', height: 0 }}
+				animate={{ height: expanded ? 'auto' : 0 }}
+			>
 				<Table
 					pagination={false}
 					columns={columns}

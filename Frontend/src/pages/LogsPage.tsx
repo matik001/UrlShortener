@@ -1,6 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-import { Spin } from 'antd';
-import { getLogs } from 'api/shortenerApi';
 import Logs from 'components/Logs/Logs';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,12 +12,12 @@ const Container = styled.div`
 `;
 const LogsPage = () => {
 	const { logKey } = useParams();
-	const { data: url } = useQuery(['GetLogs', logKey], () => {
-		return getLogs(logKey!);
-	});
+
 	return (
 		<MainTemplatePage>
-			<Container>{!url ? <Spin /> : <Logs url={url} />}</Container>
+			<Container>
+				<Logs logKey={logKey as string} />
+			</Container>
 		</MainTemplatePage>
 	);
 };

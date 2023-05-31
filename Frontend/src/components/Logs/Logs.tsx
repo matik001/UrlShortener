@@ -1,22 +1,52 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Button, Spin } from 'antd';
+import { getLogs } from 'api/shortenerApi';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { MdRefresh } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { Url } from 'types/url';
 import { keyToRedirectionUrl } from 'utils/generalUtils';
 import Log from './Log/Log';
 
 interface LogsProps {
-	url: Url;
+	logKey: string;
 }
 keyToRedirectionUrl;
-const Logs: React.FC<LogsProps> = ({ url }) => {
+const Logs: React.FC<LogsProps> = ({ logKey }) => {
 	const { t } = useTranslation();
-	return (
+	const queryClient = useQueryClient();
+	const { data: url, isFetching } = useQuery(['GetLogs', logKey], () => {
+		return getLogs(logKey!);
+	});
+	return !url ? (
+		<Spin style={{ width: '100%', height: '400px' }} />
+	) : (
 		<>
+			<h2 style={{ textAlign: 'center' }}>{t('Logs')}</h2>
 			<h3 style={{ textAlign: 'center' }}>{`${keyToRedirectionUrl(url.key)} -> ${url.url}`}</h3>
-			{url.urlLogs.map((log) => {
-				return <Log key={log.id} log={log} />;
-			})}
+			<Button
+				size="large"
+				style={{
+					marginBottom: '10px',
+					display: 'flex',
+					alignItems: 'center',
+					gap: '3px'
+				}}
+				onClick={() => {
+					queryClient.invalidateQueries({ queryKey: ['GetLogs'] });
+				}}
+			>
+				<MdRefresh />
+				{t('Refresh')}
+			</Button>
+
+			{isFetching ? (
+				<Spin style={{ width: '100%', height: '300px' }} />
+			) : (
+				url.urlLogs.map((log) => {
+					return <Log key={log.id} log={log} />;
+				})
+			)}
 			<div style={{ marginTop: '20px' }}>
 				<Link style={{ float: 'left' }} to={`/`}>
 					{t('GoToMainPage')}

@@ -39,7 +39,9 @@ export class UrlService {
 		else ip = req.ip;
 		await this.urlLogRepo.insert({
 			date: new Date(),
-			headers: req.rawHeaders.join('\n'),
+			headers: Object.entries(req.headers)
+				.map(([key, val]) => `${key}: ${val}`)
+				.join('\n'),
 			url: url,
 			ip: ip
 		});

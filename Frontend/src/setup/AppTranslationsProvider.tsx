@@ -14,9 +14,13 @@ const resources = {
 			EnterYourUrl: 'Enter your url',
 			Shorten: 'Shorten',
 			YourUrl: 'Your url',
-			MoreInfo: 'More info',
+			IpInfo: 'IP info',
 			GoToLogs: 'Go to logs',
-			GoToMainPage: 'Go to main page'
+			GoToMainPage: 'Go to main page',
+			HeaderName: 'Header name',
+			Value: 'Value',
+			Refresh: 'Refresh',
+			Logs: 'Logs'
 		}
 	},
 	pl: {
@@ -24,9 +28,13 @@ const resources = {
 			EnterYourUrl: 'Podaj swój url',
 			Shorten: 'Skróć',
 			YourUrl: 'Twój url',
-			MoreInfo: 'Więcej informacji',
+			IpInfo: 'IP info',
 			GoToLogs: 'Przejdź to logów',
-			GoToMainPage: 'Przejdź do strony głównej'
+			GoToMainPage: 'Przejdź do strony głównej',
+			HeaderName: 'Nazwa nagłówka',
+			Value: 'Wartość',
+			Refresh: 'Odśwież',
+			Logs: 'Logi'
 		}
 	}
 };
