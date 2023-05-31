@@ -21,7 +21,7 @@ const Logs: React.FC<LogsProps> = ({ logKey }) => {
 			return getLogs(logKey!);
 		},
 		{
-			refetchInterval: 10000
+			refetchInterval: 7000
 		}
 	);
 	const fromUrl = url && keyToRedirectionUrl(url.key);
@@ -51,14 +51,12 @@ const Logs: React.FC<LogsProps> = ({ logKey }) => {
 				{t('Refresh')}
 			</Button>
 
-			{/* {isFetching ?  */}
-			{!url ? (
-				<Spin style={{ width: '100%', height: '300px' }} />
-			) : (
-				url.urlLogs.map((log) => {
-					return <Log key={log.id} log={log} />;
-				})
-			)}
+			<Spin style={{ width: '100%', minHeight: '300px' }} spinning={isFetching}>
+				{url &&
+					url.urlLogs.map((log) => {
+						return <Log key={log.id} log={log} />;
+					})}
+			</Spin>
 			<div style={{ marginTop: '20px' }}>
 				<Link style={{ float: 'left' }} to={`/`}>
 					{t('GoToMainPage')}
