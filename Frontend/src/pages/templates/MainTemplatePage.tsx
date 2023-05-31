@@ -28,14 +28,16 @@ const LightModeIcon = styled(MdOutlineWbSunny)`
 	font-size: 18px;
 `;
 interface MainTemplatePageProps {
+	showTitle?: boolean;
 	children: ReactNode;
 }
-const MainTemplatePage = ({ children }: MainTemplatePageProps) => {
+const MainTemplatePage = ({ children, showTitle }: MainTemplatePageProps) => {
+	if (showTitle === undefined) showTitle = true;
+
 	const { isDarkMode, toggle } = useDarkMode(true);
 	const { t, i18n } = useTranslation();
-
 	return (
-		<div>
+		<>
 			<ThemeSwitch
 				checked={isDarkMode}
 				onClick={toggle}
@@ -52,10 +54,10 @@ const MainTemplatePage = ({ children }: MainTemplatePageProps) => {
 			>
 				{i18n.language === 'pl' ? 'PL' : 'ENG'}
 			</Button>
+			{showTitle && <Title>{t('AppTitle')}</Title>}
 
-			<Title>Super Url Shortener</Title>
 			{children}
-		</div>
+		</>
 	);
 };
 

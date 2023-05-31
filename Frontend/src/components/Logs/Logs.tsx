@@ -3,11 +3,11 @@ import { Button, Spin } from 'antd';
 import { getLogs } from 'api/shortenerApi';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { BsArrowRight } from 'react-icons/bs';
 import { MdRefresh } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { keyToRedirectionUrl } from 'utils/generalUtils';
 import Log from './Log/Log';
-
 interface LogsProps {
 	logKey: string;
 }
@@ -15,22 +15,33 @@ keyToRedirectionUrl;
 const Logs: React.FC<LogsProps> = ({ logKey }) => {
 	const { t } = useTranslation();
 	const queryClient = useQueryClient();
-	const { data: url, isFetching } = useQuery(['GetLogs', logKey], () => {
-		return getLogs(logKey!);
-	});
+	const { data: url, isFetching } = useQuery(
+		['GetLogs', logKey],
+		() => {
+			return getLogs(logKey!);
+		},
+		{
+			refetchInterval: 10000
+		}
+	);
+	const fromUrl = url && keyToRedirectionUrl(url.key);
 	return !url ? (
 		<Spin style={{ width: '100%', height: '400px' }} />
 	) : (
 		<>
 			<h2 style={{ textAlign: 'center' }}>{t('Logs')}</h2>
-			<h3 style={{ textAlign: 'center' }}>{`${keyToRedirectionUrl(url.key)} -> ${url.url}`}</h3>
+			<h3 style={{ textAlign: 'center' }}>
+				<a href={fromUrl!}>{fromUrl}</a> <BsArrowRight /> <a href={url.url}>{url.url}</a>
+			</h3>
+			<hr />
 			<Button
 				size="large"
 				style={{
-					marginBottom: '10px',
+					marginBottom: '15px',
 					display: 'flex',
 					alignItems: 'center',
-					gap: '3px'
+					gap: '3px',
+					marginTop: '20px'
 				}}
 				onClick={() => {
 					queryClient.invalidateQueries({ queryKey: ['GetLogs'] });
@@ -40,7 +51,8 @@ const Logs: React.FC<LogsProps> = ({ logKey }) => {
 				{t('Refresh')}
 			</Button>
 
-			{isFetching ? (
+			{/* {isFetching ?  */}
+			{!url ? (
 				<Spin style={{ width: '100%', height: '300px' }} />
 			) : (
 				url.urlLogs.map((log) => {

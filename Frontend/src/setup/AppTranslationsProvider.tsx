@@ -11,6 +11,7 @@ interface AppTranslationsProviderProps {
 const resources = {
 	en: {
 		translation: {
+			AppTitle: 'Super shortener',
 			EnterYourUrl: 'Enter your url',
 			Shorten: 'Shorten',
 			YourUrl: 'Your url',
@@ -20,11 +21,14 @@ const resources = {
 			HeaderName: 'Header name',
 			Value: 'Value',
 			Refresh: 'Refresh',
-			Logs: 'Logs'
+			Logs: 'Logs',
+			NotFound: 'Not found',
+			BackHome: 'Back home'
 		}
 	},
 	pl: {
 		translation: {
+			AppTitle: 'Super shortener',
 			EnterYourUrl: 'Podaj swój url',
 			Shorten: 'Skróć',
 			YourUrl: 'Twój url',
@@ -34,7 +38,9 @@ const resources = {
 			HeaderName: 'Nazwa nagłówka',
 			Value: 'Wartość',
 			Refresh: 'Odśwież',
-			Logs: 'Logi'
+			Logs: 'Logi',
+			NotFound: 'Nie znaleziono',
+			BackHome: 'Powrót na stronę główną'
 		}
 	}
 };

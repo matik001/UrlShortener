@@ -1,4 +1,5 @@
 import LogsPage from 'pages/LogsPage';
+import NotFoundPage from 'pages/NotFoundPage';
 import TestPage from 'pages/TestPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ const Router = () => {
 			<Routes>
 				<Route path="/" element={<TestPage />} />
 				<Route path="/logs/:logKey" element={<LogsPage />} />
-				<Route path="*" element={<>Not found</>} />
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
