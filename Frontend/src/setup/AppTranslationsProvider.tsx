@@ -59,6 +59,7 @@ const AppTranslationsProvider: React.FC<AppTranslationsProviderProps> = ({ child
 		});
 		setIsLoading(false);
 	}, []);
+
 	return <>{isLoading ? <Spin /> : children}</>;
 };
 

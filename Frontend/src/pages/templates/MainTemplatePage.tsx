@@ -50,7 +50,9 @@ const MainTemplatePage = ({ children, showTitle }: MainTemplatePageProps) => {
 					bottom: '20px',
 					right: '20px'
 				}}
-				onClick={() => i18n.changeLanguage(i18n.language === 'pl' ? 'en' : 'pl')}
+				onClick={() => {
+					i18n.changeLanguage(i18n.language === 'pl' ? 'en' : 'pl');
+				}}
 			>
 				{i18n.language === 'pl' ? 'PL' : 'ENG'}
 			</Button>

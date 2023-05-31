@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdHome } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import MainTemplatePage from './templates/MainTemplatePage';
 
 interface NotFoundPageProps {}
@@ -21,9 +21,7 @@ const Text = styled.div`
 	font-size: 30px;
 	user-select: none;
 `;
-const GlobalStyles = createGlobalStyle`
-    background-color: red !important;
-`;
+
 const Image = styled.img`
 	object-fit: fill;
 	width: 100%;
@@ -58,7 +56,6 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({}) => {
 				<ImageEdgeBlur>
 					<Image src={notFoundImg}></Image>
 				</ImageEdgeBlur>
-				<GlobalStyles />
 				<Text>404 - {t('NotFound')}</Text>
 				<Link
 					to="/"
