@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { randomInt } from 'crypto';
 import { Request } from 'express';
-import { Repository } from 'typeorm/repository/Repository';
+import { Repository } from 'typeorm';
 import { Url } from '../entities/url.entity';
 import { UrlLog } from '../entities/urlLog.entity';
 

@@ -25,9 +25,6 @@ export interface EnvConfig {
 }
 
 export const loadConfig = (): EnvConfig => {
-	const p = join(__dirname, '../**/**.entity.{.ts,.js}');
-	console.log(p);
-
 	return {
 		port: parseInt(process.env.PORT ?? '0', 10) || 3000,
 		db: {
@@ -38,7 +35,7 @@ export const loadConfig = (): EnvConfig => {
 			password: process.env.DB_PASS,
 			type: process.env.DB_TYPE as 'postgres' | 'mysql',
 			migrations: [join(__dirname, '../../migrations/**.ts')],
-			entities: [join(__dirname, '../**/**.entity.{.ts,.js}')]
+			entities: [join(__dirname, '../**/**.entity.{ts,js}')]
 		}
 	};
 };

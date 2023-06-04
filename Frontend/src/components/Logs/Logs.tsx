@@ -31,7 +31,8 @@ const Logs: React.FC<LogsProps> = ({ logKey }) => {
 		<>
 			<h2 style={{ textAlign: 'center' }}>{t('Logs')}</h2>
 			<h3 style={{ textAlign: 'center' }}>
-				<a href={fromUrl!}>{fromUrl}</a> <BsArrowRight /> <a href={url.url}>{url.url}</a>
+				<a href={`https://${fromUrl!}`}>{fromUrl}</a> <BsArrowRight />{' '}
+				<a href={url.url}>{url.url}</a>
 			</h3>
 			<hr />
 			<Button
